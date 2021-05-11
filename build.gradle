@@ -1,0 +1,54 @@
+buildscript {
+	ext {
+		springBootVersion = '2.0.3.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'letscode'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+	maven {
+		url " https://mvnrepository.com/artifact/com.sun.xml.bind/jaxb-core"
+	}
+	maven {
+		url " https://mvnrepository.com/artifact/com.sun.xml.bind/jaxb-impl"
+	}
+	maven {
+		url " https://mvnrepository.com/artifact/mysql/mysql-connector-java"
+	}
+}
+configurations {
+	jaxb
+}
+
+dependencies {
+	implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.21'
+	implementation group: 'com.sun.xml.bind', name: 'jaxb-core', version: '3.0.1'
+	implementation group: 'com.sun.xml.bind', name: 'jaxb-impl', version: '3.0.1'
+	implementation "jakarta.xml.bind:jakarta.xml.bind-api:2.3.2"
+	implementation "org.glassfish.jaxb:jaxb-runtime:2.3.2"
+	compile('org.springframework.boot:spring-boot-starter-web')
+	runtime('org.springframework.boot:spring-boot-devtools')
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('org.postgresql:postgresql')
+    compile('org.projectlombok:lombok')
+    compile('javax.xml.bind:jaxb-api')
+    compile('com.sun.xml.bind:jaxb-core')
+    compile('com.sun.xml.bind:jaxb-impl')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
